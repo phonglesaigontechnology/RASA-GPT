@@ -1,4 +1,4 @@
-version: "3.1"
+version: "2.0"
 session_config:
   session_expiration_time: 0.0
   carry_over_slots_to_new_session: true
@@ -22,6 +22,7 @@ intents:
 - human_handoff
 - handoff
 - search_employee
+- ask_weather
 entities:
 - email
 - priority
@@ -29,121 +30,50 @@ entities:
 - employee_name
 slots:
   confirm:
-    type: bool
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: from_intent
-      intent: affirm
-      value: true
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: confirm
-    - type: from_intent
-      intent: deny
-      value: false
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: confirm
   previous_email:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: custom
   caller_id:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: custom
   email:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: email
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: email
-      - active_loop: incident_status_form
-        requested_slot: email
-    - type: from_intent
-      intent: affirm
-      value: true
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: email
-      - active_loop: incident_status_form
-        requested_slot: email
-    - type: from_intent
-      intent: deny
-      value: false
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: email
-      - active_loop: incident_status_form
-        requested_slot: email
-    - type: from_entity
-      entity: email
   incident_title:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: from_trigger_intent
-      intent: password_reset
-      value: Problem resetting password
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: incident_title
-    - type: from_trigger_intent
-      intent: problem_email
-      value: Problem with email
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: incident_title
-    - type: from_text
-      not_intent:
-      - incident_status
-      - bot_challenge
-      - help
-      - affirm
-      - deny
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: incident_title
   priority:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: priority
-      conditions:
-      - active_loop: open_incident_form
-    - type: from_entity
-      entity: priority
   problem_description:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: from_text
-      not_intent:
-      - incident_status
-      - bot_challenge
-      - help
-      - affirm
-      - deny
-      conditions:
-      - active_loop: open_incident_form
-        requested_slot: problem_description
   requested_slot:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: custom
   handoff_to:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: handoff_to
 responses:
   utter_out_of_scope:
   - text: Sorry, I'm not sure how to respond to that. Type "help" for assistance.
@@ -183,7 +113,7 @@ responses:
   utter_ask_use_previous_email:
   - text: Would you like to use the last email address you used, {previous_email}?
   utter_ask_confirm:
-  - text: "Should I open an incident with the following details? \n    email: {email} \n    problem description: {problem_description} \n    title: {incident_title} \n    priority: {priority}"
+  - text: "Should I open an incident with the following details? \n- Email: {email} \n- Problem description: {problem_description} \n- Title: {incident_title} \n- Priority: {priority}"
     buttons:
     - title: Yes
       payload: /affirm
@@ -205,15 +135,65 @@ forms:
   open_incident_form:
     ignored_intents: []
     required_slots:
-    - email
-    - priority
-    - problem_description
-    - incident_title
-    - confirm
+      - email
+      - priority
+      - problem_description
+      - incident_title
+      - confirm
+    confirm:
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
+    email:
+      - entity: email
+        type: from_entity
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
+    incident_title:
+      - intent: password_reset
+        type: from_trigger_intent
+        value: Problem resetting password
+      - intent: problem_email
+        type: from_trigger_intent
+        value: Problem with email
+      - not_intent:
+          - incident_status
+          - bot_challenge
+          - help
+          - affirm
+          - deny
+        type: from_text
+    priority:
+      - entity: priority
+        type: from_entity
+    problem_description:
+      - not_intent:
+          - incident_status
+          - bot_challenge
+          - help
+          - affirm
+          - deny
+        type: from_text
   incident_status_form:
     ignored_intents: []
     required_slots:
-    - email
+      - email
+    email:
+      - entity: email
+        type: from_entity
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
 actions:
 - action_ask_email
 - action_check_incident_status
@@ -223,3 +203,5 @@ actions:
 - validate_open_incident_form
 - validate_incident_status_form
 - action_search_employee
+- action_ask_chatgpt
+- action_ask_weather

@@ -1,4 +1,4 @@
-version: "3.1"
+version: "2.0"
 nlu:
 - intent: greet
   examples: |
@@ -31,7 +31,7 @@ nlu:
     - Well hello there ;)
 - intent: search_employee
   examples: |
-    - tell me the sachin tsukuda department?
+    - tell me the [Sachin Tsukuda](employee_name) department?
     - what is [Sachin Tsukuda](employee_name)'s department?
     - what's [Sachin Tsukuda](employee_name)'s department?
     - tell me the department of [Sachin Tsukuda](employee_name)? 
@@ -220,6 +220,7 @@ nlu:
     - I want to open an incident, but it's [low](priority) priority
     - I need to open a helpdesk ticket. it's [really important]{"entity": "priority", "value": "high"}
     - open an incident
+    - Open an incident
     - open an incedent
     - i want to open an incident
     - i wanna open a incident
@@ -325,14 +326,11 @@ nlu:
     - what year is it
     - order a pizza
     - I want to order a pizza
-    - what is the weather today
-    - what is the weather
     - how old are you?
     - add two plus two
     - Hdjejene
     - asd
     - title
-    - how about the forecast
     - foolish
     - joke
     - Can I get a hamburger?
@@ -421,6 +419,29 @@ nlu:
     - na
     - nah
     - nah I'm good
+
+- intent: ask_weather
+  examples: |
+    - What's it like outside?
+    - what is it like to be outside?
+    - what's the weather like?
+    - How's the weather?
+    - how is the weather?
+    - what is it like to be outside tomorrow?
+    - what's it like to be outside tomorrow?
+    - what will it be like outside tomorrow?
+    - what is it like outside tomorrow?
+    - tell me the weather tomorrow? what will it be like?
+    - what will it be like tomorrow?
+    - tell me the weather tomorrow?
+    - what's the weather tomorrow?
+    - how's the weather tomorrow?
+    - list the forecast for tomorrow?
+    - can you give me the forecasts for tomorrow?
+    - what's the forecast for tomorrow?
+    - what is the weather today
+    - what is the weather
+    - how about the forecast
 - intent: human_handoff
   examples: |
     - I want a human

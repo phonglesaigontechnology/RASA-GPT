@@ -79,7 +79,7 @@ class ActionOpenIncident(Action):
             dispatcher.utter_message(template="utter_incident_creation_canceled")
             return [AllSlotsReset(), SlotSet("previous_email", email)]
         message = (
-            f"An incident with the following details would be opened:"
+            f"An incident with the following details would be opened:\n"
             f"- email: {email}\n"
             f"- problem description: {problem_description}\n"
             f"- title: {incident_title}\n"

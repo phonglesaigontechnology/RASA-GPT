@@ -133,4 +133,5 @@ dmypy.json
 .rasa
 models
 /init_db/
-/init_db/
+*.csv
+*.env
