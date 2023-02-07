@@ -1,5 +1,5 @@
 action_endpoint:
-  url: "http://localhost:5055/webhook"
+  url: "http://rasa-sdk:5055/webhook"
 tracker_store:
   type: sql
   dialect: "postgresql"

@@ -1,5 +1,6 @@
-rasa~=3.4.2
-rasa-sdk
-
 SQLAlchemy~=1.4.46
 loguru~=0.6.0
+PyYAML~=6.0
+pandas
+python-dotenv~=0.21.1
+omegaconf

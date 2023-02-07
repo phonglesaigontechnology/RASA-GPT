@@ -1,0 +1,5 @@
+employee_data: data/employee.csv
+department: data/department.csv
+department_employee: data/department_employee.csv
+department_manager: data/department_manager.csv
+title: data/title.csv

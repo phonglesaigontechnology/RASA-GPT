@@ -1,4 +1,4 @@
-version: "3.1"
+version: "2.0"
 nlu:
 - intent: greet
   examples: |
@@ -31,10 +31,10 @@ nlu:
     - Well hello there ;)
 - intent: search_employee
   examples: |
-    - tell me the sachin tsukuda department?
+    - tell me the [Sachin Tsukuda](employee_name) department?
     - what is [Sachin Tsukuda](employee_name)'s department?
     - what's [Sachin Tsukuda](employee_name)'s department?
-    - tell me the department of [Sachin Tsukuda](employee_name)? 
+    - tell me the department of [Sachin Tsukuda](employee_name)?
     - give me the information about [Berhard Leonart](employee_name)
     - give me some information about [Berhard Leonart](employee_name)
     - give me information about [Berhard Leonart](employee_name)
@@ -83,7 +83,6 @@ nlu:
     - good bye
     - good bye rasa bot!
     - good night
-    - goodbye
     - goodbye.
     - goodnight
     - gotta go
@@ -92,7 +91,6 @@ nlu:
     - ok, bye
     - ok.bye
     - see u later
-    - see ya
     - see you
     - see you . bye
     - take care
@@ -119,26 +117,22 @@ nlu:
     - cool thank you
     - cool, thanks
     - danke
-    - great thanks
-    - ok thanks
     - ok thanks
     - ok thanks!
     - perfect thank you
     - thank u
-    - thank you
     - thank you anyways
     - thanks
     - thanks a bunch for everything
-    - thanks a lot
     - thanks for the help
     - thanks you
-    - thanks!
     - thankyou
     - thnks
     - thx
     - yes thanks
     - thanks for your information
     - thanks f
+    - nice
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -149,7 +143,6 @@ nlu:
     - aren't you a bot
     - Are you a bot?
     - are you a BOT
-    - are you a bot?
     - are you a chatbot
     - are you a rasa bot?
     - are you a real bot?
@@ -196,7 +189,7 @@ nlu:
     - How can I reconfigure my pass word
     - pass word reset?
     - forgot my pass word again what now
-    - password help fix 
+    - password help fix
     - show me how to set password again
     - can you tell me how to change my password
     - change pass word
@@ -220,6 +213,7 @@ nlu:
     - I want to open an incident, but it's [low](priority) priority
     - I need to open a helpdesk ticket. it's [really important]{"entity": "priority", "value": "high"}
     - open an incident
+    - Open an incident
     - open an incedent
     - i want to open an incident
     - i wanna open a incident
@@ -240,7 +234,6 @@ nlu:
     - big problem
     - How can you help me
     - How you help me?
-    - I need some help
     - What are my options
     - What are you able to do?
     - What can I ask you?
@@ -259,7 +252,6 @@ nlu:
     - cool! can I do something else here?
     - hello what can you do for me
     - help
-    - help me
     - help please
     - help pls
     - help?
@@ -325,14 +317,11 @@ nlu:
     - what year is it
     - order a pizza
     - I want to order a pizza
-    - what is the weather today
-    - what is the weather
     - how old are you?
     - add two plus two
     - Hdjejene
     - asd
     - title
-    - how about the forecast
     - foolish
     - joke
     - Can I get a hamburger?
@@ -421,6 +410,28 @@ nlu:
     - na
     - nah
     - nah I'm good
+- intent: ask_weather
+  examples: |
+    - What's it like outside?
+    - what is it like to be outside?
+    - what's the weather like?
+    - How's the weather?
+    - how is the weather?
+    - what is it like to be outside tomorrow?
+    - what's it like to be outside tomorrow?
+    - what will it be like outside tomorrow?
+    - what is it like outside tomorrow?
+    - tell me the weather tomorrow? what will it be like?
+    - what will it be like tomorrow?
+    - tell me the weather tomorrow?
+    - what's the weather tomorrow?
+    - how's the weather tomorrow?
+    - list the forecast for tomorrow?
+    - can you give me the forecasts for tomorrow?
+    - what's the forecast for tomorrow?
+    - what is the weather today
+    - what is the weather
+    - how about the forecast
 - intent: human_handoff
   examples: |
     - I want a human
@@ -458,9 +469,6 @@ nlu:
     - i dont wanna talk to a bot
     - i want to speak to a real person
     - i want to speak to customer service
-    - i want to talk to a human
-    - i want to talk to a person
-    - i want to talk to human
     - i want to talk to someone at rasa
     - i want to talk to someone else
     - i want to talk to someone who is smarter than you
@@ -497,7 +505,6 @@ nlu:
     - talk to human
     - i want human :(
     - can i talk to human
-    - i want to talk to a human
     - i want to speak to human
     - can i talk to a real person?
     - connect me to a real person
@@ -512,3 +519,4 @@ nlu:
     - really important
     - escalated
     - escalate
+    - critical
