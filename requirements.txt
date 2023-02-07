@@ -1,2 +1,5 @@
-rasa~=3.0.0
-rasa-sdk~=3.0.0
+rasa~=3.4.2
+rasa-sdk
+
+SQLAlchemy~=1.4.46
+loguru~=0.6.0

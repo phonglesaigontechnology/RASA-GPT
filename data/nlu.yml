@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.1"
 nlu:
 - intent: greet
   examples: |
@@ -29,6 +29,32 @@ nlu:
     - ey boss
     - I said, helllllloooooO!!!!
     - Well hello there ;)
+- intent: search_employee
+  examples: |
+    - tell me the sachin tsukuda department?
+    - what is [Sachin Tsukuda](employee_name)'s department?
+    - what's [Sachin Tsukuda](employee_name)'s department?
+    - tell me the department of [Sachin Tsukuda](employee_name)? 
+    - give me the information about [Berhard Leonart](employee_name)
+    - give me some information about [Berhard Leonart](employee_name)
+    - give me information about [Berhard Leonart](employee_name)
+    - please give me information about [Berhard Leonart](employee_name)
+    - Get information of [Kristin Gaughan](employee_name)
+    - get [Kristin Gaughan](employee_name)'s contact details
+    - get [Kristin Gaughan](employee_name)'s contact information
+    - get [Kristin Gaughan](employee_name)'s contact info
+    - get [Kristin Gaughan](employee_name)'s information
+    - find out more information about [Billie Ventosa](employee_name)
+    - get more information about [Billie Ventosa](employee_name)
+    - get information about [Billie Ventosa](employee_name)
+    - get information on [Billie Ventosa](employee_name)
+    - who's [Fox Trystram](employee_name)?
+    - who's the [Fox Trystram](employee_name)
+    - who is [Fox Trystram](employee_name)?
+    - who is [Fox Trystram](employee_name)
+    - is [Gonzalo Ozeki](employee_name) in development?
+    - is [Gonzalo Ozeki](employee_name) in the development dept?
+    - is [Gonzalo Ozeki](employee_name) in the development department?
 - intent: goodbye
   examples: |
     - bye

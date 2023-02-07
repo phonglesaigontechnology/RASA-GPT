@@ -130,3 +130,7 @@ dmypy.json
 
 /credentials.yml
 /.idea
+.rasa
+models
+/init_db/
+/init_db/
