@@ -2,12 +2,6 @@
 
 This is a Rasa chatbot example demonstrating how to build an AI assistant. Below is an example conversation, showing the bot helping a user open a support ticket and query its status.
 
-Here is an example of a conversation you can have with this bot:
-
-```
-Coming soon ...
-```
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -17,10 +11,12 @@ Coming soon ...
     - [Install the dependencies](#install-the-dependencies)
   - [Running the bot](#running-the-bot)
   - [Things you can ask the bot](#things-you-can-ask-the-bot)
-  - [Example conversations](#example-conversations)
   - [Testing the bot](#testing-the-bot)
   - [Rasa X Deployment](#rasa-x-deployment)
-    - [Action Server Image](#action-server-image)
+    - [Local Mode](#rasa-x-local-mode)
+    - [Docker Compose Installation](#rasa-x-docker-image)
+  - [Custom Action Server](#action-server)
+    - [Action Server Image](#action-server-docker-image)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -34,18 +30,70 @@ In a Python3 virtual environment run:
 pip install -r requirements.txt
 ```
 
-To install development dependencies, run:
+## Configs
 
-```bash
-pip install -r requirements-dev.txt
-pre-commit install
-```
+We recommend you run Rasa with a Docker Container, but if you want to test the bot locally, 
+you maybe want to change below configs.
+
+- endpoint.yml
+  ```
+  action_endpoint:
+    url: "http://sdk-rasa:5055/webhook" -> "http://localhost:5055/webhook"
+  tracker_store:
+    type: sql
+    dialect: "postgresql"
+    url: ${DB_HOST} -> "localhost"
+    port: ${DB_PORT} -> ""
+    username: ${DB_USER} -> "user_name" (user_name for log in the database)
+    password: ${DB_PASSWORD} -> (password for log in the database)
+    db: ${DB_DATABASE} -> "" (You can find more information https://rasa.com/docs/rasa/tracker-stores/)
+    login_db: ${DB_LOGIN_DB} -> "" (The parameter 'login_db' can only be used with a postgres database)
+  ```
+- config.yml
+  ```
+  language: en
+  pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: RegexEntityExtractor
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 150
+    random_seed: 1
+  - name: FallbackClassifier
+    threshold: 0.9
+  - name: DucklingEntityExtractor
+    url: http://duckling:8000 -> url: http://localhost:8000
+    dimensions:
+    - email
+  - name: EntitySynonymMapper
+  policies:
+  - name: AugmentedMemoizationPolicy
+    max_history: 4
+  - name: TEDPolicy
+    max_history: 4
+    epochs: 100
+  - name: RulePolicy
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True
+  ```
 
 ## Running the bot
 
 Use `rasa train` to train a model.
 
 Then, to run, first set up your action server in one terminal window:
+
+Note: You maybe need to install the dependency for the action server.
+```bash
+pip install -r sdk-requirements.txt
+```
 
 ```bash
 rasa run actions
@@ -68,80 +116,13 @@ under the hood. You can also add this flag to the action server command. To simp
 
 ## Things you can ask the bot
 
-[//]: # (The bot has two main skills:)
-
-[//]: # (1. Opening an incident in ServiceNow.)
-
-[//]: # (2. Checking the status of incidents in ServiceNow by email address of the caller. It will prompt the user to re-use previously provided &#40;during the chat session&#41; email addresses, if any exist.)
-
-[//]: # (For the purposes of illustration, the bot recognizes the following as requests to open an incident:)
-
-[//]: # ()
-[//]: # (1. Asking to open an incident directly e.g. "I want to open an incident")
-
-[//]: # (2. Asking about a problem resetting their password e.g. "I can't reset my password")
-
-[//]: # (3. Asking about a problem with outlook/email e.g. "I can't log in to my outlook")
-
 Take a look at `data/nlu.md` to see what the bot is currently trained to recognize.
 
 It can also respond to requests for help (e.g. "help me").
 
-## Example conversations
+An example story:
 
-(Coming soon ...)
-
-[//]: # (```)
-
-[//]: # (Your input ->  help me reset my password)
-
-[//]: # (    What is your email address?)
-
-[//]: # (Your input ->  idontexist@example.com)
-
-[//]: # (    Sorry, "idontexist@example.com" isn't in our incident management system. Please try again.)
-
-[//]: # (    What is your email address?)
-
-[//]: # (Your input ->  abraham.lincoln@example.com)
-
-[//]: # (    ? What is the priority of this issue?)
-
-[//]: # (Your input -> 3: high &#40;/inform{"priority":"high"}&#41;)
-
-[//]: # (    What is the problem description for the issue?)
-
-[//]: # (Your input ->  Password stuck in a loop)
-
-[//]: # (    ? Should I open an incident with the following details?)
-
-[//]: # (    email: abraham.lincoln@example.com)
-
-[//]: # (    problem description: Password stuck in a loop)
-
-[//]: # (    title: Problem resetting password)
-
-[//]: # (    priority: high)
-
-[//]: # (Your input ->  1: Yes &#40;/affirm&#41;)
-
-[//]: # (    Successfully opened up incident INC0010008 for you.  Someone will reach out soon.)
-
-[//]: # (Your input ->  Can I check the status of my tickets?)
-
-[//]: # (    Would you like to use the last email address you used, abraham.lincoln@example.com?)
-
-[//]: # (Your input ->  Yes please)
-
-[//]: # (    Incident INC0010002: "Email Log in problem", opened on 2020-05-21 09:57:06 is currently in progress)
-
-[//]: # (    Incident INC0010008: "Problem resetting password", opened on 2020-05-21 12:12:49 is currently awaiting triage)
-
-[//]: # (Your input ->  thanks)
-
-[//]: # (    You're welcome!)
-
-[//]: # (```)
+![Open an incident](images/story01.png)
 
 ## Testing the bot
 
@@ -154,8 +135,33 @@ To [deploy helpdesk-assistant](https://rasa.com/docs/rasa/user-guide/how-to-depl
 [one line deploy script](https://rasa.com/docs/rasa-x/installation-and-setup/one-line-deploy-script/) for Rasa X. As part of the deployment, you'll need to set up [git integration](https://rasa.com/docs/rasa-x/installation-and-setup/integrated-version-control/#connect-your-rasa-x-server-to-a-git-repository) to pull in your data and
 configurations, and build or pull an action server image.
 
-### Action Server Image
+### Rasa X Local mode
 
+You can install Rasa X on your local machine with:
+```bash
+pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
+```
+
+Note: Make sure that your Rasa, Rasa X is match with [**Compatibility Matrix**](https://legacy-docs-rasa-x.rasa.com/docs/rasa-x/0.42.x/changelog/compatibility-matrix)
+
+### Rasa X Docker Image
+
+Note: Rasa X is intended to be deployed on a server and not to a personal/local machine. Deploying on a server is recommended because Rasa X is designed to stay up continuously, and not to be frequently stopped or restarted.
+
+You can follow with the official document of Rasa X [**here**](https://legacy-docs-rasa-x.rasa.com/docs/rasa-x/0.42.x/installation-and-setup/install/docker-compose)
+
+Or use directly our docker-compose.yml
+```bash
+docker-compose up
+```
+The Rasa-X server will launch at [0.0.0.0:5009](http://0.0.0.0:5009)
+
+## Action Server
+
+Action Server is a server runs custom actions for a Rasa Open Source conversational assistant.
+
+
+### Action Server Docker Image
 See the Dockerfile for what is included in the action server image,
 
 To build the image:
