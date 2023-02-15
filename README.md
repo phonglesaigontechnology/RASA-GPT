@@ -122,7 +122,7 @@ It can also respond to requests for help (e.g. "help me").
 
 An example story:
 
-![Open an incident](images/story01.png)
+![Open an incident](images/story02.png)
 
 ## Testing the bot
 

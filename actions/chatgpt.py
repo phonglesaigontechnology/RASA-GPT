@@ -1,22 +1,24 @@
 """
 Author: phong.dao
 """
+import logging
 from typing import Text, Dict, Any, List
 
-import asyncio
-import loguru
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-from src.chat_gpt.chat_gpt_proxy import ChatGPTProxy
+from src.chat_gpt.chat_gpt import ChatGPT
+
+logger = logging.getLogger(__name__)
 
 
 class ActionAskChatGPT(Action):
     """
     Action ask Chatgpt.
     """
+
     def __init__(self):
-        self.chatgpt = ChatGPTProxy()
+        self.chatgpt = ChatGPT()
 
     def name(self) -> Text:
         return "action_ask_chatgpt"
@@ -27,10 +29,12 @@ class ActionAskChatGPT(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict]:
+
+        last_message = tracker.latest_message.get("text")
         try:
-            response = asyncio.run(self.chatgpt.ask(tracker.latest_message.get("text")))
+            response = self.chatgpt.ask(last_message)
             dispatcher.utter_message(response)
         except Exception as e:
-            loguru.logger.error(e)
+            logger.error(e)
             dispatcher.utter_message(template=f"utter_default")
         return []

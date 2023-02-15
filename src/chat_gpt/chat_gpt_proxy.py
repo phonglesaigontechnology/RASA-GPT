@@ -11,6 +11,9 @@ from src.chat_gpt.chat_gpt import ChatGPT
 
 
 class ChatGPTProxy(ChatGPT):
+    """
+    ChatGPT by proxy
+    """
     def __init__(self):
         """
         Initialize Chatbot with API key (from https://platform.openai.com/account/api-keys)
@@ -18,24 +21,25 @@ class ChatGPTProxy(ChatGPT):
         super().__init__()
         self.chatbot = Chatbot(email=os.getenv("CHATGPT_USER"), password=os.getenv("CHATGPT_PASSWORD"))
 
-    async def ask(
+    async def ask_proxy(
         self,
         question: Text,
-        temperature: float = 0.5,
     ):
         """
         Args:
             question:
-            temperature:
 
         Returns: A response from ChatGPT
         Examples:
             >>>import asyncio
             >>>chat_gpt_ = ChatGPTProxy()
-            >>>result = asyncio.run(chat_gpt_.ask("Hello"))
+            >>>result = asyncio.run(chat_gpt_.ask_proxy("Hello"))
             >>>print(result)
         """
         response = ""
-        async for line in self.chatbot.ask(question):
-            response += line["choices"][0]["text"].replace("<|im_end|>", "")
+        try:
+            async for line in self.chatbot.ask(question):
+                response += line["choices"][0]["text"].replace("<|im_end|>", "")
+        except Exception as e:
+            response = self.ask(question)
         return str(response)

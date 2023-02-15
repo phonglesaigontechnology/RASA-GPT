@@ -25,33 +25,58 @@ rules:
       - intent: search_employee
       - action: action_search_employee
 
-  - rule: start open incident form
+  - rule: answer company about
     steps:
-    - or:
-      - intent: open_incident
-      - intent: password_reset
-      - intent: problem_email
-    - action: open_incident_form
-    - active_loop: open_incident_form
+      - intent: ask_saigontech_about
+      - action: utter_about_saigontech
 
-  - rule: submit open incident form
-    condition:
-      - active_loop: open_incident_form
+  - rule: answer address company
     steps:
-    - action: open_incident_form
-    - active_loop: null
-    - action: action_open_incident
+      - intent: ask_saigontech_address
+      - action: utter_address_saigontech
 
-  - rule: start incident status form
+  - rule: answer address company head quarter
     steps:
-    - intent: incident_status
-    - action: incident_status_form
-    - active_loop: incident_status_form
+      - intent: ask_address_saigontech_HCM
+      - action: utter_address_saigontech_HCM_1
 
-  - rule: submit incident status form
-    condition:
-      - active_loop: incident_status_form
+  - rule: answer address company aloha
     steps:
-    - action: incident_status_form
-    - active_loop: null
-    - action: action_check_incident_status
+      - intent: ask_address_saigontech_HCM_2
+      - action: utter_address_saigontech_HCM_2
+
+  - rule: answer address company da nang
+    steps:
+      - intent: ask_address_saigontech_DN
+      - action: utter_address_saigontech_DN
+
+#  - rule: start open incident form
+#    steps:
+#    - or:
+#      - intent: open_incident
+#      - intent: password_reset
+#      - intent: problem_email
+#    - action: open_incident_form
+#    - active_loop: open_incident_form
+#
+#  - rule: submit open incident form
+#    condition:
+#      - active_loop: open_incident_form
+#    steps:
+#    - action: open_incident_form
+#    - active_loop: null
+#    - action: action_open_incident
+#
+#  - rule: start incident status form
+#    steps:
+#    - intent: incident_status
+#    - action: incident_status_form
+#    - active_loop: incident_status_form
+#
+#  - rule: submit incident status form
+#    condition:
+#      - active_loop: incident_status_form
+#    steps:
+#    - action: incident_status_form
+#    - active_loop: null
+#    - action: action_check_incident_status

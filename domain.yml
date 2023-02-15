@@ -23,8 +23,6 @@ intents:
     use_entities: true
 - human_handoff:
     use_entities: true
-- incident_status:
-    use_entities: true
 - inform:
     use_entities: true
 - nlu_fallback:
@@ -44,6 +42,18 @@ intents:
 - thank:
     use_entities: true
 - trigger_handoff:
+    use_entities: true
+- ask_address_saigontech_HCM:
+    use_entities: []
+- ask_address_saigontech_DN:
+    use_entities: []
+- ask_address_saigontech_HCM_2:
+    use_entities: []
+- ask_saigontech_address:
+    use_entities: []
+- ask_saigontech_about:
+    use_entities: []
+- show_list_of_employee:
     use_entities: true
 entities:
 - email
@@ -108,7 +118,7 @@ responses:
   utter_ask_email:
   - text: What is your email address?
   utter_ask_name:
-  - text: I'm so sorry. I can't help you to find that employee. Could you type again with fullname?
+  - text: I'm so sorry. I can't help you to find that employee. Could you type again with his/her email?
   utter_ask_incident_title:
   - text: What should we use for the title of this incident?
   utter_ask_problem_description:
@@ -128,32 +138,47 @@ responses:
   - text: Sorry, "{email}" isn't in our incident management system. Please try again.
   utter_help:
   - text: |-
-      I can help you open a service request ticket, or give you detail contact of employee. 
+      I can answer your question about Saigontechnology, or give you detail contact of employee. 
       You can ask me things like: 
-      - Open an incident 
-      - Help me reset my password 
-      - I'm having a issue with my email 
-      - What's the status of the ticket I opened?
+      - What is Saigontechnology?
+      - Where is Saigontechnology? 
+      - <employee>'s contact
   utter_welcome:
   - text: You're welcome!
   utter_default:
   - text: I didn't quite understand that. Could you rephrase?
-  utter_ask_use_previous_email:
-  - text: Would you like to use the last email address you used, {previous_email}?
-  utter_ask_confirm:
-  - buttons:
-    - payload: /affirm
-      title: Yes
-    - payload: /deny
-      title: No, cancel the incident
+  utter_about_saigontech:
+  - text: |-
+      [Saigon Technology](https://saigontechnology.com/about-us) (Business Registration
+      Name: STS Software Technology JSC) is the leading Vietnam-based Agile software
+      outsourcing company in Ho Chi Minh and Da Nang Cities, Vietnam, established in 2012
+      with the power of more than 270 top tier software engineers and a mature process.
+      - [Business Request](https://saigontechnology.com/contact)
+      - [Career Contact](https://careers.saigontechnology.com/)
+  utter_address_saigontech_HCM_1:
+  - image: https://res.cloudinary.com/dz07umgbg/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1676356958/saigontech_hcm1_fksxfv.jpg
     text: |-
-      Should I open an incident with the following details? 
-      - Email: {email} 
-      - Problem description: {problem_description} 
-      - Title: {incident_title} 
-      - Priority: {priority}
-  utter_incident_creation_canceled:
-  - text: Alright, I have cancelled the incident.
+      🏢 HO CHI MINH (HEADQUARTER)
+      🗺 2nd & 3rd Floors, M.I.D Building, 02 Nguyen The Loc Street, Ward 12 Tan Binh District, Ho Chi Minh City, Vietnam
+  utter_address_saigontech_HCM_2:
+  - image: https://res.cloudinary.com/dz07umgbg/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1676356957/saigontech_hcm2_y6gkx3.jpg
+    text: |-
+      🏢 HO CHI MINH (ALOHA OFFICE)
+      🗺 1st Floor, Aloha Building, 68 Hong Ha Street, Ward 2, Tan Binh District, Ho Chi Minh City, Viet Nam
+  utter_address_saigontech_DN:
+  - image: https://res.cloudinary.com/dz07umgbg/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1676356957/saigontech_dn_ygpaul.jpg
+    text: |-
+      🏢 DA NANG (BRANCH)
+      🗺 17th Floor, VietinBank Building, 36 Tran Quoc Toan Street, Hai Chau 1 Ward, Hai Chau District, Da Nang City, Vietnam
+  utter_address_saigontech:
+  - buttons:
+    - payload: /ask_address_saigontech_HCM
+      title: Ho Chi Minh (Headquarter)
+    - payload: /ask_address_saigontech_DN
+      title: Da Nang (Branch)
+    - payload: /ask_address_saigontech_HCM_2
+      title: Ho Chi Minh (Aloha Office)
+    text: Please choose the office
   utter_ask_whatelse:
   - text: What else can I help you with?
   utter_ask_handoff:
@@ -175,59 +200,6 @@ actions:
 - action_search_employee
 - action_ask_chatgpt
 - action_ask_weather
-forms:
-  open_incident_form:
-    required_slots:
-      confirm:
-      - intent: affirm
-        type: from_intent
-        value: true
-      - intent: deny
-        type: from_intent
-        value: false
-      email:
-      - entity: email
-        type: from_entity
-      - intent: affirm
-        type: from_intent
-        value: true
-      - intent: deny
-        type: from_intent
-        value: false
-      incident_title:
-      - intent: password_reset
-        type: from_trigger_intent
-        value: Problem resetting password
-      - intent: problem_email
-        type: from_trigger_intent
-        value: Problem with email
-      - not_intent:
-        - incident_status
-        - bot_challenge
-        - help
-        - affirm
-        - deny
-        type: from_text
-      priority:
-      - entity: priority
-        type: from_entity
-      problem_description:
-      - not_intent:
-        - incident_status
-        - bot_challenge
-        - help
-        - affirm
-        - deny
-        type: from_text
-  incident_status_form:
-    required_slots:
-      email:
-      - entity: email
-        type: from_entity
-      - intent: affirm
-        type: from_intent
-        value: true
-      - intent: deny
-        type: from_intent
-        value: false
+- action_show_list_of_employee
+forms: {}
 e2e_actions: []

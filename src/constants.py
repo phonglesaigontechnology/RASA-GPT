@@ -18,6 +18,7 @@ else:
 
 class BaseConstants:
     ROOT_PATH = os.path.abspath(os.path.join(__file__, "../.."))
+    PRE_IMAGE_URL = "https://experiment.saigontechnology.vn/rasa-chatgpt/resource"
 
 
 class ChatGPTConstants(BaseConstants):
@@ -25,6 +26,8 @@ class ChatGPTConstants(BaseConstants):
     ENCODER = tiktoken.get_encoding("gpt2")
     BASE_PROMPT = (
         "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, "
-        f"and very friendly. Current date: {str(date.today())}\n\nHuman: Hello, who are you?\nAI: I am an AI "
-        "created by OpenAI. How can I help you today?\nHuman: "
+        f"and very friendly. Current date: {str(date.today())}. You are RASA-chatGPT\n\n"
+        f"Human: Hello, who are you?\n"
+        f"AI: I am an RASA-chatGPT created by Saigontechnology AI Team. How can I help you today?\n"
+        f"Human: "
     )

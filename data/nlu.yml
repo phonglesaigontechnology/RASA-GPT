@@ -171,56 +171,28 @@ nlu:
     - you robo
     - real bot then?
     - are you really a bbot?
-- intent: password_reset
+- intent: ask_saigontech_about
   examples: |
-    - need to reset my password
-    - need help resetting my password
-    - I can't reset my password
-    - need help with my password
-    - having issues resetting my password
-    - freaking password won't work
-    - reset my password
-    - password reset
-    - forgot my password and can't reset it
-    - uh password reset help please
-    - I'm having so many problems resetting my password
-    - Can you reset my password reset
-    - My pass word isn't working for me what do I do
-    - How can I reconfigure my pass word
-    - pass word reset?
-    - forgot my pass word again what now
-    - password help fix
-    - show me how to set password again
-    - can you tell me how to change my password
-    - change pass word
-    - I forgot my password what can I do
-    - forgot my password help me reset it pls
-- intent: open_incident
-  examples: |
-    - I need to open an incident
-    - Can you open a case for me
-    - I have an issue I need to open a incident for
-    - open incident
-    - can you help me open a incident please
-    - I want to open a new incident
-    - I want to open a incident
-    - I'm having a weird issue.
-    - I'm having a problem
-    - I'm having a issue I need to open a incident for.
-    - I have a issue I need to open a case for.
-    - open an incident for aileen.mottern@example.com
-    - open an [urgent]{"entity": "priority", "value": "high"} issue
-    - I want to open an incident, but it's [low](priority) priority
-    - I need to open a helpdesk ticket. it's [really important]{"entity": "priority", "value": "high"}
-    - open an incident
-    - Open an incident
-    - open an incedent
-    - i want to open an incident
-    - i wanna open a incident
-    - I want to open a ticket
-    - can I open a ticket
-    - pls help me open tix support
-    - ticket support incident open now can you do that for me
+    - what is saigontechnology? what is it?
+    - what's saigontechnology?
+    - what is saigontechnology?
+    - tell me about saigontechnology? why?
+    - tell me more about saigontechnology?
+    - tell me about saigontechnology
+    - tell me about saigon technology?
+    - tell me about saigontechnology?
+    - saigontechnology?
+    - does saigontechnology exist?
+    - do you know about saigontechnology?
+    - do you know saigontechnology? why?
+    - do you know saigontechnology?
+    - about saigontechnology
+    - tell me the name of saigontechnology?
+    - is saigontechnology a software company?
+    - Is Saigontechnology a software company?
+    - Give me information of Saigontechnology
+    - saigontechnology is a software company? give me information about saigontechnology
+    - is saigontechnology a software company? give me information about saigontechnology
 - intent: help
   examples: |
     - I need help
@@ -256,55 +228,25 @@ nlu:
     - help pls
     - help?
     - hep me
-- intent: problem_email
+- intent: ask_saigontech_address
   examples: |
-    - my outlook application won't open
-    - I'm having issues with outlook.
-    - issues with outlook
-    - outlook application will not open
-    - there's a problem with my email
-    - something is broken with outlook
-    - I can't log in to my email
-    - can't log in to outlook
-    - my email won't let me log in
-    - i have a problem with my email
-    - can't get to slack
-    - i cant open my email
-    - i can't able to login
-    - I'm having trouble logging into my email
-    - can you help me with me with my email please
-    - what can you do about my email it's not working
-    - can you fix outlook for me I don't know what to do
-    - something isn't right with my e-mail
-    - can you help me with my e-mail account
-    - my internet mail isn't working
-    - outlook is showing me a weird message
-    - email isn't loading can you help
-- intent: inform
-  examples: |
-    - my email is test@example.com
-    - my email is abraham.lincoln@example.com
-    - name.name@example.com
-    - it is admin@example.com
-    - aileen.mottern@example.com
-    - [low](priority)
-    - [medium](priority)
-    - [high](priority)
-    - it should be a [low](priority) priority
-    - it should be [medium](priority)
-    - [escalated]{"entity": "priority", "value": "high"}
-    - [escalate]{"entity": "priority", "value": "high"}
-    - [super high](priority)
-    - john
-    - the priority is [high](priority)
-    - test@gmail.com
-    - xyz@example.com
-    - my email is ella@rasa.com
-    - abraham.lincoln@example.com
-    - steve
-    - sara@rasa.com
-    - [urgent]{"entity": "priority", "value": "high"}
-    - [critical]{"entity": "priority", "value": "high"}
+    - Where is SaigonTechnology company?
+    - where is saigon technology?
+    - where is saigontechnology?
+    - where is saigontechnology company?
+    - saigontechnology software?
+    - where is saigontechnology software?
+    - tell me the address of saigontechnology software?
+    - tell me the best way to go to saigontech?
+    - how do i get into saigontechnology?
+    - how do you go to saigontechnology?
+    - do you know how to go to saigontechnology?
+    - give me a guide to saigontechnology
+    - give me directions to saigontechnology
+    - Address of SaigonTechnology Software?
+    - How to go to SaigonTechnology?
+    - Do you know how to go to SaigonTechnology?
+    - Give me direction to Saigontechnology
 - intent: out_of_scope
   examples: |
     - what is the square root of 5
@@ -331,30 +273,6 @@ nlu:
     - Can you give me your datacenter's password?
     - Can you make sandwiches?
     - Can you please send me an uber
-- intent: incident_status
-  examples: |
-    - I want to check if my ticket has been closed
-    - what's the status of my incident?
-    - Has the incident been closed yet?
-    - Is my ticket in progress?
-    - What has happened with my open ticket?
-    - what's going on with the incident I opened?
-    - Do I have any open incidents at the moment?
-    - Can I check the status of my open tickets?
-    - Can I see the status of the ticket I opened?
-    - Check ticket status
-    - check incident status
-    - ok, try looking it up for abraham.lincoln@example.com
-    - look up ticket status for abel.tuter@example.com
-    - my ticket status
-    - What's the status of the ticket I opened?
-    - what's my ticket status
-    - how is my ticket going
-    - an updates on my incident ticket?
-    - I opened an issue last week how is it doing now
-    - can you check the status my email is sara@rasa.com
-    - has the ticket been closed yet?
-    - is my issue still open
 - intent: affirm
   examples: |
     - yes
@@ -513,10 +431,3 @@ nlu:
     - let me speak to a real person
     - let me speak to a real person please
     - i want to talk to a real person
-- synonym: high
-  examples: |
-    - urgent
-    - really important
-    - escalated
-    - escalate
-    - critical
