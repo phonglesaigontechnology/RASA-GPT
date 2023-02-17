@@ -1,0 +1,82 @@
+version: "2.0"
+rules:
+  - rule: handoff intent from other bot's handoff triggers greeting
+    steps:
+    - intent: handoff
+    - action: utter_greet
+
+  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+    steps:
+    - intent: nlu_fallback
+    - action: action_ask_chatgpt
+
+  - rule: Answer the question ask weather
+    steps:
+      - intent: ask_weather
+      - action: action_ask_weather
+
+  - rule: answer bot challenge
+    steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+  - rule: search employee information
+    steps:
+      - intent: search_employee
+      - action: action_search_employee
+
+  - rule: answer company about
+    steps:
+      - intent: ask_saigontech_about
+      - action: utter_about_saigontech
+
+  - rule: answer address company
+    steps:
+      - intent: ask_saigontech_address
+      - action: utter_address_saigontech
+
+  - rule: answer address company head quarter
+    steps:
+      - intent: ask_address_saigontech_HCM
+      - action: utter_address_saigontech_HCM_1
+
+  - rule: answer address company aloha
+    steps:
+      - intent: ask_address_saigontech_HCM_2
+      - action: utter_address_saigontech_HCM_2
+
+  - rule: answer address company da nang
+    steps:
+      - intent: ask_address_saigontech_DN
+      - action: utter_address_saigontech_DN
+
+#  - rule: start open incident form
+#    steps:
+#    - or:
+#      - intent: open_incident
+#      - intent: password_reset
+#      - intent: problem_email
+#    - action: open_incident_form
+#    - active_loop: open_incident_form
+#
+#  - rule: submit open incident form
+#    condition:
+#      - active_loop: open_incident_form
+#    steps:
+#    - action: open_incident_form
+#    - active_loop: null
+#    - action: action_open_incident
+#
+#  - rule: start incident status form
+#    steps:
+#    - intent: incident_status
+#    - action: incident_status_form
+#    - active_loop: incident_status_form
+#
+#  - rule: submit incident status form
+#    condition:
+#      - active_loop: incident_status_form
+#    steps:
+#    - action: incident_status_form
+#    - active_loop: null
+#    - action: action_check_incident_status

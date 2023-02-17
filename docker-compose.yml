@@ -1,0 +1,98 @@
+version: "3.4"
+
+x-database-credentials: &database-credentials
+  DB_HOST: "postgres"
+  DB_PORT: "${DB_PORT:-5432}"
+  DB_USER: "${DB_USER:-admin}"
+  DB_PASSWORD: "${DB_PASSWORD}"
+  DB_LOGIN_DB: "${DB_LOGIN_DB:-rasa}"
+
+services:
+
+  postgres:
+    restart: always
+    image: "postgres:14.6"
+    expose:
+      - "5432"
+#    ports:
+#      - "5435:5432"
+    environment:
+      POSTGRES_USER: "${DB_USER:-admin}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DATABASE: "${DB_DATABASE:-rasa}"
+    env_file:
+      - .env
+    volumes:
+      - ./db:/var/lib/postgresql/data
+      - ./init_db:/docker-entrypoint-initdb.d
+#    entrypoint: ["tail", "-f", "/dev/null"]
+
+  duckling:
+    restart: always
+    image: "rasa/duckling:0.2.0.2-r2"
+    expose:
+      - "8000"
+#    ports:
+#      - "8000:8000"
+    command: [ "duckling-example-exe", "--no-access-log", "--no-error-log" ]
+
+  rasa-sdk:
+    restart: always
+    build:
+      dockerfile: rasa-sdk.Dockerfile
+      context: .
+      args:
+        - RASA_SDK_VERSION=${RASA_SDK_VERSION}
+    expose:
+      - "5055"
+    volumes:
+      - ./actions:/app/actions
+      - ./src:/app/src
+      - ./configs:/app/configs
+      - ./data:/app/data
+    env_file:
+      - .env
+    depends_on:
+      - duckling
+
+  rasa-service:
+    restart: always
+    environment:
+      MPLCONFIGDIR: "/tmp/.matplotlib"
+      DB_DIALECT: "postgresql"
+      <<: *database-credentials
+    env_file:
+      - .env
+    build:
+      dockerfile: rasa.Dockerfile
+      context: .
+      args:
+        - RASA_VERSION=${RASA_VERSION}
+    user: root
+    volumes:
+      - ./.config:/.config
+      - ./data:/app/data # mount data
+      - ./configs:/app/configs
+      - ./config.yml:/app/config.yml
+      - ./domain.yml:/app/domain.yml
+      - ./src:/app/src
+      - ./models:/app/models
+      - ./credentials.yml:/app/credentials.yml
+      - ./endpoints.yml:/app/endpoints.yml
+      - ./logs:/logs
+      - ./auth:/app/auth
+      - ./channels:/app/channels
+    expose:
+      - "5005"
+      - "5002"
+    # entrypoint: ["tail", "-f", "/dev/null"]
+    command: >
+      rasa x
+      --no-prompt
+      --enable-api
+      --cors "*"
+    ports:
+      - "5007:5005"
+      - "5009:5002"
+    depends_on:
+      - postgres
