@@ -2,11 +2,10 @@
 Author: phong.dao
 """
 import os
-import shutil
 from typing import Text, Tuple
-
-import pandas as pd
+import shutil
 from htmlwebshot import WebShot
+import pandas as pd
 from loguru import logger
 
 from src.constants import BaseConstants
@@ -192,3 +191,22 @@ class EmployeeSearcher:
 
         result = pd.DataFrame.from_records(result, index="employee_id")
         return result
+
+
+if __name__ == "__main__":
+    from src.utils.get_configs import get_config
+
+    data_configs = get_config("data_configs")
+    employee_searcher = EmployeeSearcher(
+        employee_data=os.path.join(BaseConstants.ROOT_PATH, data_configs.get("employee_data", "employee_data.csv")),
+        department=os.path.join(BaseConstants.ROOT_PATH, data_configs.get("department", "department.csv")),
+        department_employee=os.path.join(
+            BaseConstants.ROOT_PATH, data_configs.get("department_employee", "department_employee.csv")
+        ),
+        department_manager=os.path.join(
+            BaseConstants.ROOT_PATH, data_configs.get("department_manager", "department_manager.csv")
+        ),
+        title=os.path.join(BaseConstants.ROOT_PATH, data_configs.get("title", "title.csv")),
+    )
+    df = employee_searcher.get_preview_of_list_employee(5)
+    employee_searcher.csv_to_image(df, "asd")

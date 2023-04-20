@@ -8,7 +8,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y wkhtmltopdf \
     build-essential \
-    software-properties-common
+    software-properties-common 
 
 COPY sdk-requirements.txt /app/sdk-requirements.txt
 

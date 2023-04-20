@@ -5,43 +5,15 @@ session_config:
   session_expiration_time: 0
   carry_over_slots_to_new_session: true
 intents:
-- affirm:
-    use_entities: true
 - ask_weather:
-    use_entities: true
-- bot_challenge:
-    use_entities: true
-- deny:
-    use_entities: true
-- goodbye:
     use_entities: true
 - greet:
     use_entities: true
-- handoff:
-    use_entities: true
 - help:
-    use_entities: true
-- human_handoff:
-    use_entities: true
-- inform:
     use_entities: true
 - nlu_fallback:
     use_entities: true
-- open_incident:
-    use_entities: []
-- out_of_scope:
-    use_entities: true
-- password_reset:
-    use_entities: true
-- problem_email:
-    use_entities: true
-- restart:
-    use_entities: true
 - search_employee:
-    use_entities: true
-- thank:
-    use_entities: true
-- trigger_handoff:
     use_entities: true
 - ask_address_saigontech_HCM:
     use_entities: []
@@ -55,43 +27,20 @@ intents:
     use_entities: []
 - show_list_of_employee:
     use_entities: true
+- ask_saigontech_employee:
+    use_entities: true
+- out_of_scope:
+    use_entities: true
 entities:
-- email
-- priority
-- handoff_to
 - employee_name
+- email
 slots:
   confirm:
     type: rasa.shared.core.slots.BooleanSlot
     initial_value: null
     auto_fill: true
     influence_conversation: false
-  previous_email:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
   caller_id:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  email:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  incident_title:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  priority:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  problem_description:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
@@ -103,6 +52,11 @@ slots:
     influence_conversation: false
   handoff_to:
     type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  email:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
     initial_value: null
     auto_fill: true
     influence_conversation: false
@@ -119,19 +73,8 @@ responses:
   - text: What is your email address?
   utter_ask_name:
   - text: I'm so sorry. I can't help you to find that employee. Could you type again with his/her email?
-  utter_ask_incident_title:
-  - text: What should we use for the title of this incident?
   utter_ask_problem_description:
-  - text: What is the problem description for the issue?
-  utter_ask_priority:
-  - buttons:
-    - payload: /inform{"priority":"low"}
-      title: low
-    - payload: /inform{"priority":"medium"}
-      title: medium
-    - payload: /inform{"priority":"high"}
-      title: high
-    text: What is the priority of this issue?
+  - text: ''
   utter_no_priority:
   - text: Sorry "{priority}" is not a valid priority. Please try again.
   utter_no_email:
@@ -181,22 +124,17 @@ responses:
     text: Please choose the office
   utter_ask_whatelse:
   - text: What else can I help you with?
-  utter_ask_handoff:
-  - text: It looks like you want to be transferred to a human agent.
   utter_handoff:
   - text: Alright, I'll try to transfer you.
   utter_wouldve_handed_off:
   - text: If you were talking to me via chatroom, I would have handed you off to {handoffhost}.
   utter_no_handoff:
   - text: Since you haven't configured a host to hand off to, I can't send you anywhere!
+  utter_employee_saigontech:
+  - text: About 500 employees
+  utter_about_saigontech_employee:
+  - text: About 1000 employees
 actions:
-- action_ask_email
-- action_check_incident_status
-- action_handoff
-- action_handoff_options
-- action_open_incident
-- validate_open_incident_form
-- validate_incident_status_form
 - action_search_employee
 - action_ask_chatgpt
 - action_ask_weather

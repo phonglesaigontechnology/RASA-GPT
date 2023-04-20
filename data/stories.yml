@@ -1,36 +1,18 @@
 version: "2.0"
 stories:
-
-- story: answer out of scope
-  steps:
-  - intent: out_of_scope
-  - action: action_ask_chatgpt
-
 - story: give help
   steps:
   - intent: help
   - action: utter_help
-
-- story: thank
-  steps:
-  - intent: thank
-  - action: utter_welcome
-
 - story: greet + give info
   steps:
   - intent: greet
   - action: utter_greet
   - action: utter_help
-
-- story: say goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
-
 - story: Answer the question ask weather
   steps:
-    - intent: greet
-    - action: utter_greet
-    - action: utter_help
-    - intent: ask_weather
-    - action: action_ask_weather
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_weather
+  - action: action_ask_weather

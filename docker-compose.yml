@@ -50,6 +50,7 @@ services:
       - ./src:/app/src
       - ./configs:/app/configs
       - ./data:/app/data
+      - ./static:/app/static
     env_file:
       - .env
     depends_on:
@@ -77,6 +78,7 @@ services:
       - ./domain.yml:/app/domain.yml
       - ./src:/app/src
       - ./models:/app/models
+      - ./results:/app/results
       - ./credentials.yml:/app/credentials.yml
       - ./endpoints.yml:/app/endpoints.yml
       - ./logs:/logs
