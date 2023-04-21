@@ -3,8 +3,8 @@ PyYAML~=6.0
 pandas~=1.5.3
 python-dotenv~=0.21.1
 omegaconf~=2.3.0
-tiktoken~=0.2.0
-openai~=0.26.5
+tiktoken
+openai
 tabulate
 htmlwebshot
 Jinja2

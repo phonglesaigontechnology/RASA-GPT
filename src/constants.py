@@ -22,12 +22,9 @@ class BaseConstants:
 
 
 class ChatGPTConstants(BaseConstants):
-    MODEL = os.environ.get("GPT_MODEL") or "text-davinci-003"
+    MODEL = os.environ.get("GPT_MODEL") or "gpt-3.5-turbo"
     ENCODER = tiktoken.get_encoding("gpt2")
     BASE_PROMPT = (
         "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, "
         f"and very friendly. Current date: {str(date.today())}. You are RASA-chatGPT\n\n"
-        f"Human: Hello, who are you?\n"
-        f"AI: I am an RASA-chatGPT created by Saigontechnology AI Team. How can I help you today?\n"
-        f"Human: "
     )

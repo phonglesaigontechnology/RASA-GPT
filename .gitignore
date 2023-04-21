@@ -136,3 +136,8 @@ models
 *.csv
 *.env
 !example.env
+data/preview_data.jpg
+results/
+db/
+data/employee_name
+data/lookup_table.yml
