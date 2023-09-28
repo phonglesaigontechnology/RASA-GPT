@@ -1,0 +1,514 @@
+[
+  {
+    "text": "bonjour",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.3511175513267517
+    }
+  },
+  {
+    "text": "toodle-oo",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.0028010776732116938
+    }
+  },
+  {
+    "text": "am I talking to a human?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "human_handoff",
+      "confidence": 0.999956488609314
+    }
+  },
+  {
+    "text": "who r u?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.9429845809936523
+    }
+  },
+  {
+    "text": "that's right",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.48304739594459534
+    }
+  },
+  {
+    "text": "yes thanks",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.9999594688415527
+    }
+  },
+  {
+    "text": "can you forward me to your team",
+    "intent": "human_handoff",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.9956209063529968
+    }
+  },
+  {
+    "text": "talking to a bot is stupid",
+    "intent": "human_handoff",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.725692868232727
+    }
+  },
+  {
+    "text": "you must have learnt a lot of thing. Which one tbat you think you're really good at",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.4786703586578369
+    }
+  },
+  {
+    "text": "Show me list of employee",
+    "intent": "show_list_of_employee",
+    "intent_prediction": {
+      "name": "search_employee",
+      "confidence": 0.9999447464942932
+    }
+  },
+  {
+    "text": "good morning",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.9704053401947021
+    }
+  },
+  {
+    "text": "greetings",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.2672407329082489
+    }
+  },
+  {
+    "text": "thanks for the help",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.5285913944244385
+    }
+  },
+  {
+    "text": "yes thanks",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9999856352806091
+    }
+  },
+  {
+    "text": "give me a guide to saigontechnology",
+    "intent": "ask_saigontech_address",
+    "intent_prediction": {
+      "name": "ask_saigontech_about",
+      "confidence": 0.957659125328064
+    }
+  },
+  {
+    "text": "Hdjejene",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.618417501449585
+    }
+  },
+  {
+    "text": "can you talk me about chat GPT",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.7671217918395996
+    }
+  },
+  {
+    "text": "please do",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.9995172619819641
+    }
+  },
+  {
+    "text": "nah I'm good",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.4079038202762604
+    }
+  },
+  {
+    "text": "i want a representative",
+    "intent": "human_handoff",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.6310936808586121
+    }
+  },
+  {
+    "text": "lo",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.6699160933494568
+    }
+  },
+  {
+    "text": "good evening",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.569442629814148
+    }
+  },
+  {
+    "text": "appreciate it",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "ask_weather",
+      "confidence": 0.6795505285263062
+    }
+  },
+  {
+    "text": "nice",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.9973735809326172
+    }
+  },
+  {
+    "text": "is saigontechnology a software company?",
+    "intent": "ask_saigontech_about",
+    "intent_prediction": {
+      "name": "ask_saigontech_address",
+      "confidence": 0.9976980686187744
+    }
+  },
+  {
+    "text": "Is Saigontechnology a software company?",
+    "intent": "ask_saigontech_about",
+    "intent_prediction": {
+      "name": "ask_saigontech_address",
+      "confidence": 0.9976981282234192
+    }
+  },
+  {
+    "text": "come back",
+    "intent": "help",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.999792218208313
+    }
+  },
+  {
+    "text": "what year is it",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.8831279873847961
+    }
+  },
+  {
+    "text": "how old are you?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9932924509048462
+    }
+  },
+  {
+    "text": "asd",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.44049689173698425
+    }
+  },
+  {
+    "text": "Can you make sandwiches?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.9004014730453491
+    }
+  },
+  {
+    "text": "deny",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.6641699075698853
+    }
+  },
+  {
+    "text": "are there also humans working for your company?",
+    "intent": "human_handoff",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.8825323581695557
+    }
+  },
+  {
+    "text": "phong le",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "search_employee",
+      "confidence": 0.9999922513961792
+    }
+  },
+  {
+    "text": "l o",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.0632966086268425
+    }
+  },
+  {
+    "text": "Hola",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.5947953462600708
+    }
+  },
+  {
+    "text": "I said, helllllloooooO!!!!",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.6116562485694885
+    }
+  },
+  {
+    "text": "show me list employee",
+    "intent": "search_employee",
+    "intent_prediction": {
+      "name": "show_list_of_employee",
+      "confidence": 0.9691861867904663
+    }
+  },
+  {
+    "text": "Thanh",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "search_employee",
+      "confidence": 0.8015524744987488
+    }
+  },
+  {
+    "text": "What are you able to do?",
+    "intent": "help",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.748681366443634
+    }
+  },
+  {
+    "text": "saigontechnology software?",
+    "intent": "ask_saigontech_address",
+    "intent_prediction": {
+      "name": "ask_saigontech_about",
+      "confidence": 0.9987147450447083
+    }
+  },
+  {
+    "text": "how do i get into saigontechnology?",
+    "intent": "ask_saigontech_address",
+    "intent_prediction": {
+      "name": "ask_saigontech_about",
+      "confidence": 0.6721653938293457
+    }
+  },
+  {
+    "text": "I want to know the weather",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "ask_weather",
+      "confidence": 0.9987387657165527
+    }
+  },
+  {
+    "text": "foolish",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.8057472109794617
+    }
+  },
+  {
+    "text": "who am I?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9999338984489441
+    }
+  },
+  {
+    "text": "who am I",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9999338984489441
+    }
+  },
+  {
+    "text": "yup",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8268616795539856
+    }
+  },
+  {
+    "text": "indeed",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.9610942006111145
+    }
+  },
+  {
+    "text": "That would be great",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.8144145607948303
+    }
+  },
+  {
+    "text": "YUP",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8378495573997498
+    }
+  },
+  {
+    "text": "Nevermind",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "human_handoff",
+      "confidence": 0.92489093542099
+    }
+  },
+  {
+    "text": "you too",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.8035315871238708
+    }
+  },
+  {
+    "text": "hôm nay ngày mấy",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9450711011886597
+    }
+  },
+  {
+    "text": "ayyyy whaddup",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.7059982419013977
+    }
+  },
+  {
+    "text": "I want to get phong le",
+    "intent": "search_employee",
+    "intent_prediction": {
+      "name": "nlu_fallback",
+      "confidence": 0.355974018573761
+    }
+  },
+  {
+    "text": "ciao",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.4023151099681854
+    }
+  },
+  {
+    "text": "farewell",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.55629563331604
+    }
+  },
+  {
+    "text": "gotta go",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_saigontech_address",
+      "confidence": 0.9193330407142639
+    }
+  },
+  {
+    "text": "take care",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.8784433007240295
+    }
+  },
+  {
+    "text": "Give me information of Saigontechnology",
+    "intent": "ask_saigontech_about",
+    "intent_prediction": {
+      "name": "ask_saigontech_address",
+      "confidence": 0.6729305982589722
+    }
+  },
+  {
+    "text": "title",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "nlu_fallback",
+      "confidence": 0.3407374322414398
+    }
+  },
+  {
+    "text": "Can you call me back ?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.9999737739562988
+    }
+  },
+  {
+    "text": "Can you please send me an uber",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "help",
+      "confidence": 0.562858521938324
+    }
+  },
+  {
+    "text": "that's a compliment",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "search_employee",
+      "confidence": 0.35680440068244934
+    }
+  }
+]

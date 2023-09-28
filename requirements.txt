@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 rasa~=2.8.34
 rasa-sdk~=2.8.11
 
+=======
+rasa==2.8.16
+>>>>>>> 4cde717... [Readme] Update README.md
 SQLAlchemy~=1.4.46
 loguru~=0.6.0
 PyYAML~=6.0
