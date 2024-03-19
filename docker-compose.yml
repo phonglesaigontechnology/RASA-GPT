@@ -85,17 +85,12 @@ services:
     expose:
       - "5005"
       - "5002"
-#    command: ["run", "--enable-api", "--port", "5005",  "--cors", "'*'"]
+    # command: ["rasa", "run", "--enable-api", "--port", "5005",  "--cors", "'*'"]
+    # entrypoint: ["tail", "-f", "/dev/null"]
     command: >
       x
       --no-prompt
-      --production
       --model /app/models
-      --data /app/data
-      --credentials /app/credentials.yml
-      --config /app/config.yml
-      --domain /app/domain.yml
-      --endpoints /app/endpoints.yml
       --enable-api
       --auth-token '${RASA_TOKEN}'
       --cors "*"

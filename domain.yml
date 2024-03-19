@@ -13,16 +13,24 @@ intents:
 - problem_email
 - open_incident:
     use_entities: []
-- incident_status
-- out_of_scope
-- restart
-- affirm
-- deny
-- trigger_handoff
-- human_handoff
-- handoff
-- search_employee
-- ask_weather
+- ask_address_saigontech_DN:
+    use_entities: []
+- ask_address_saigontech_HCM_2:
+    use_entities: []
+- ask_saigontech_address:
+    use_entities: []
+- ask_saigontech_about:
+    use_entities: []
+- out_of_scope:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- thank:
+    use_entities: true
 entities:
 - email
 - priority
@@ -131,69 +139,12 @@ responses:
   - text: If you were talking to me via chatroom, I would have handed you off to {handoffhost}.
   utter_no_handoff:
   - text: Since you haven't configured a host to hand off to, I can't send you anywhere!
-forms:
-  open_incident_form:
-    ignored_intents: []
-    required_slots:
-      - email
-      - priority
-      - problem_description
-      - incident_title
-      - confirm
-    confirm:
-      - intent: affirm
-        type: from_intent
-        value: true
-      - intent: deny
-        type: from_intent
-        value: false
-    email:
-      - entity: email
-        type: from_entity
-      - intent: affirm
-        type: from_intent
-        value: true
-      - intent: deny
-        type: from_intent
-        value: false
-    incident_title:
-      - intent: password_reset
-        type: from_trigger_intent
-        value: Problem resetting password
-      - intent: problem_email
-        type: from_trigger_intent
-        value: Problem with email
-      - not_intent:
-          - incident_status
-          - bot_challenge
-          - help
-          - affirm
-          - deny
-        type: from_text
-    priority:
-      - entity: priority
-        type: from_entity
-    problem_description:
-      - not_intent:
-          - incident_status
-          - bot_challenge
-          - help
-          - affirm
-          - deny
-        type: from_text
-  incident_status_form:
-    ignored_intents: []
-    required_slots:
-      - email
-    email:
-      - entity: email
-        type: from_entity
-      - intent: affirm
-        type: from_intent
-        value: true
-      - intent: deny
-        type: from_intent
-        value: false
+  utter_employee_saigontech:
+  - text: About 500 employees
+  utter_about_saigontech_employee:
+  - text: About 1000 employees
+  utter_about_peptalk:
+  - text: peptalk is a product company that provides experts
 actions:
 - action_ask_email
 - action_check_incident_status
@@ -203,5 +154,7 @@ actions:
 - validate_open_incident_form
 - validate_incident_status_form
 - action_search_employee
-- action_ask_chatgpt
+- action_ask_chatbard
 - action_ask_weather
+forms: {}
+e2e_actions: []
